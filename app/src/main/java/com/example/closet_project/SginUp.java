@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class SginUp extends AppCompatActivity {
 
     DatabaseHelper db;
-    EditText email, edit_password, edit_con_password;
+    EditText email, edit_password, edit_con_password, edit_name;
     Button register, login;
 
     @Override
@@ -24,6 +24,7 @@ public class SginUp extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email);
         edit_password = (EditText) findViewById(R.id.edit_password);
         edit_con_password = (EditText) findViewById(R.id.edit_con_password);
+        edit_name = (EditText) findViewById(R.id.edit_name);
         register = (Button) findViewById(R.id.register);
         login = (Button) findViewById(R.id.login);
 
@@ -33,14 +34,15 @@ public class SginUp extends AppCompatActivity {
                 String semail = email.getText().toString();
                 String sepass = edit_password.getText().toString();
                 String secpass = edit_con_password.getText().toString();
+                String sename = edit_name.getText().toString();
 
-                if(semail.equals("") || sepass.equals("") || secpass.equals("")) {
+                if(semail.equals("") || sepass.equals("") || secpass.equals("") || sename.equals("")) {
                     Toast.makeText(getApplicationContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
                 } else {
                     if (sepass.equals(secpass)) {
                         Boolean chkemail = db.chkemail(semail);
                         if (chkemail == true) {
-                            Boolean insert = db.insert(semail, sepass);
+                            Boolean insert = db.insert(semail, sepass, sename);
                             if (insert == true) {
                                 Toast.makeText(getApplicationContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
