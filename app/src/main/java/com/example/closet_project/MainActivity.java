@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity
             intent.setAction(Intent.ACTION_GET_CONTENT);
             intent.setType("image/*");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
